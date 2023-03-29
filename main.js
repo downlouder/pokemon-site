@@ -34,7 +34,7 @@ function generateCart() {
 }
 
 function pickRandomPokemon(array) {
-  const randomCartID = Math.floor(Math.random() * array.length) // 1010
+  const randomCartID = Math.floor(Math.random() * array.length);
   const randomPokemonURL = array[randomCartID].url;
   showSpecsOfPokemon(randomPokemonURL)
 }
@@ -43,8 +43,6 @@ function showSpecsOfPokemon(pokemonLink) {
   fetch(pokemonLink)
     .then(response => response.json())
     .then(data => {
-      cardBlock.style.display = 'flex';
-      
       const image = data.sprites.other.dream_world.front_default || data.sprites.front_default;
       const name = data.name[0].toUpperCase() + data.name.slice(1);
       const hp = data.stats[0].base_stat;
@@ -55,6 +53,7 @@ function showSpecsOfPokemon(pokemonLink) {
       const speed = data.stats[5].base_stat;
       
       if (!image) return;
+      cardBlock.style.display = 'flex';
       cardBlock.innerHTML = `
         <div class="img-block">
           <img class="pokemon-img" src=${image} />

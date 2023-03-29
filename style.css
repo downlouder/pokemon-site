@@ -25,6 +25,7 @@ body {
 }
 
 .random, .card-block {
+  transition: all 300ms;
   width: 300px;
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(6px);
@@ -36,7 +37,6 @@ body {
   border-radius: 16px;
   font-size: 1rem;
   padding: 18px 36px;
-  transition: all 300ms;
 }
 
 .random:hover {
@@ -95,4 +95,21 @@ body {
 
 .value {
   color: #404040;
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    background-position: center;
+  }
+  .app {
+    width: 100%;
+  }
+
+  .card-block, .random {
+    width: 90%;
+  }
+
+  .card-block {
+    height: 560px;
+  }
 }
