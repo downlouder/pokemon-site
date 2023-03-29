@@ -9,7 +9,7 @@ const typeColor = {
   Fire: '#FD4B5A',
   Water: '#85A8FB',
   Grass: '#27CB50',
-  Electric: '#FAFA72',
+  Electric: '#F2EE29',
   Ice: '#86D2F5',
   Fighting: '#EF6239',
   Poison: '#9B69DA',
@@ -48,22 +48,37 @@ function showSpecsOfPokemon(pokemonLink) {
       const image = data.sprites.other.dream_world.front_default || data.sprites.front_default;
       const name = data.name[0].toUpperCase() + data.name.slice(1);
       const hp = data.stats[0].base_stat;
-
+      const attack = data.stats[1].base_stat;
+      const defense = data.stats[2].base_stat;
+      const spAtk = data.stats[3].base_stat;
+      const spDef = data.stats[4].base_stat; 
+      const speed = data.stats[5].base_stat;
+      
+      if (!image) return;
       cardBlock.innerHTML = `
         <div class="img-block">
           <img class="pokemon-img" src=${image} />
         </div>
         <p class="types"></p>
-        <p class="hp">${hp}</p>
-        <p class="name">${name}</p>
-        <p class="index">${setIndex(data.id)}</p>
+        <p class="name">Name: ${name}</p>
+        <p class="total">Total: ${getTotalValue(data.stats)}</p>
+        <p class="hp">HP: ${hp}</p>
+        <p class="attack">Attack: ${attack}</p>
+        <p class="defense">Defense: ${defense}</p>
+        <p class="sp-atk">Sp. Atk: ${spAtk}</p>
+        <p class="sp-def">Sp. Def: ${spDef}</p>
+        <p class="speed">Speed: ${speed}</p>
+        <p class="index">#${setIndex(data.id)}</p>
       `;
-      console.log()
       addTypes(data.types)
     })  
 }
 
-const addTypes = (types) => {
+function getTotalValue(stats) {
+  return stats.reduce((acc, val) => acc + val.base_stat,0);
+}
+
+function addTypes(types) {
   const typesP = document.querySelector('.types');
   types.forEach(item => {
     const type = item.type.name[0].toUpperCase() + item.type.name.slice(1); 
@@ -85,26 +100,4 @@ function setIndex(id) {
   return id;
 }
   
-// fetch(url)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     const arrayOfPokemon = data.results
-  //     arrayOfPokemon.map(pokemon => {
-  //       console.log(pokemon);
-  //       showSpecsOfPokemon(pokemon.url)
-  //     })
-  //   })
-
-
-// function showSpecsOfPokemon(pokemonLink) {
-//   fetch(pokemonLink)
-//     .then(response => response.json())
-//     .then(data => {
-//       if (data.id <= 10) {
-//         console.log(data)
-//           app.innerHTML += `<img src=${data.sprites.other.dream_world.front_default} >`
-//       }
-//     })  
-// }
-
-randomBtn.addEventListener('click', generateCart)
+randomBtn.addEventListener('click', generateCart);

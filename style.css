@@ -29,6 +29,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .img-block {
@@ -41,3 +42,15 @@ body {
   height: 100%;
 }
 
+.types {
+  display: flex;
+  gap: 36px;
+}
+
+.types > span {
+  color: #f9f9f9;
+  width: 100px;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
