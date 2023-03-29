@@ -3,7 +3,6 @@ const url = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
 const app = document.querySelector('.app');
 const randomBtn = document.querySelector('.random');
 const cardBlock = document.querySelector('.card-block');
-
 const typeColor = {
   Normal: '#CA98A6',
   Fire: '#FD4B5A',
@@ -44,7 +43,8 @@ function showSpecsOfPokemon(pokemonLink) {
   fetch(pokemonLink)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      cardBlock.style.display = 'flex';
+      
       const image = data.sprites.other.dream_world.front_default || data.sprites.front_default;
       const name = data.name[0].toUpperCase() + data.name.slice(1);
       const hp = data.stats[0].base_stat;
@@ -60,15 +60,35 @@ function showSpecsOfPokemon(pokemonLink) {
           <img class="pokemon-img" src=${image} />
         </div>
         <p class="types"></p>
-        <p class="name">Name: ${name}</p>
-        <p class="total">Total: ${getTotalValue(data.stats)}</p>
-        <p class="hp">HP: ${hp}</p>
-        <p class="attack">Attack: ${attack}</p>
-        <p class="defense">Defense: ${defense}</p>
-        <p class="sp-atk">Sp. Atk: ${spAtk}</p>
-        <p class="sp-def">Sp. Def: ${spDef}</p>
-        <p class="speed">Speed: ${speed}</p>
-        <p class="index">#${setIndex(data.id)}</p>
+        <div class="info">
+          <p class="name">
+            <span class="text">Name:</span> <span class="value">${name}</span>
+          </p>
+          <p class="total">
+            <span class="text">Total:</span> <span class="value">${getTotalValue(data.stats)}</span>
+          </p>
+          <p class="hp">
+            <span class="text">HP:</span> <span class="value">${hp}</span>
+          </p>
+          <p class="attack">
+            <span class="text">Attack:</span> <span class="value">${attack}</span>
+          </p>
+          <p class="defense">
+            <span class="text">Defense:</span> <span class="value">${defense}</span>
+          </p>
+          <p class="sp-atk">
+            <span class="text">Sp. Atk:</span> <span class="value">${spAtk}</span>
+          </p>
+          <p class="sp-def">
+            <span class="text">Sp. Def:</span> <span class="value">${spDef}</span>
+          </p>
+          <p class="speed">
+            <span class="text">Speed:</span> <span class="value">${speed}</span>
+          </p>
+          <p class="index">
+            <span class="text">#${setIndex(data.id)}</span>
+          </p>  
+        </div>
       `;
       addTypes(data.types)
     })  
@@ -99,5 +119,6 @@ function setIndex(id) {
   else if (id < 1000) return `0${id}`
   return id;
 }
-  
+
+cardBlock.style.display = 'none';
 randomBtn.addEventListener('click', generateCart);

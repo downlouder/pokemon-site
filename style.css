@@ -7,9 +7,13 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-image: url('./images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .app {
@@ -20,10 +24,34 @@ body {
   gap: 1rem;
 }
 
+.random, .card-block {
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.random {
+  color: #252525;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  padding: 18px 36px;
+  transition: all 300ms;
+}
+
+.random:hover {
+  background-color: rgba(222, 222, 222, 0.7);
+}
+.random:active {
+  background-color: rgba(200, 200, 200, 0.7);
+}
+
+.random:focus {
+  outline: none;
+}
+
 .card-block {
-  width: 400px;
-  height: 600px;
-  border: 1px solid black;
+  height: 500px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -53,4 +81,18 @@ body {
   text-align: center;
   padding: 8px 12px;
   border-radius: 8px;
+}
+
+.info > p {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.text {
+  color: #252525;
+  font-weight: 600;
+}
+
+.value {
+  color: #404040;
 }
